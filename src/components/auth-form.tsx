@@ -44,7 +44,7 @@ export function AuthForm({ mode }: AuthFormProps) {
         );
       }
 
-      router.replace(isSignup ? "/login" : "/events");
+      router.replace(isSignup ? "/login" : "/preferences");
       router.refresh();
     } catch (error) {
       setError(

@@ -131,6 +131,12 @@ export function SiteHeader() {
                 >
                   {user.email}
                 </span>
+                <Link
+                    href="/preferences"
+                    className="font-medium text-slate-600 hover:text-teal-700"
+                    >
+                    Preferences
+                    </Link>
 
                 <button
                   type="button"
