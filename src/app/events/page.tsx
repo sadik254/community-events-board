@@ -129,13 +129,6 @@ export default function EventsPage() {
 
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900">
-      <header className="border-b border-slate-200 bg-white">
-        <div className="mx-auto max-w-6xl px-5 py-5">
-          <p className="text-lg font-bold text-teal-800">
-            Community Events Board
-          </p>
-        </div>
-      </header>
 
       <div className="mx-auto max-w-6xl px-5 py-10">
         <div className="mb-8">
