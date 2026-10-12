@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ReminderButton } from "@/components/reminder-button";
+import Link from "next/link";
 
 type EventItem = {
   id: string;
@@ -283,8 +284,13 @@ export default function EventsPage() {
                       </span>
 
                       <h2 className="mt-4 text-xl font-semibold">
+                        <Link
+                        href={`/events/${encodeURIComponent(event.id)}`}
+                        className="hover:text-teal-700"
+                      >
                         {event.title}
-                      </h2>
+                      </Link>
+                    </h2>
 
                       <p className="mt-2 text-sm text-slate-600">
                         {event.city}

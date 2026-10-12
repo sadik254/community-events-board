@@ -125,6 +125,20 @@ export function SiteHeader() {
               </span>
             ) : user ? (
               <>
+              <Link
+                href="/feed"
+                className="font-medium text-slate-600 hover:text-teal-700"
+              >
+                My Feed
+              </Link>
+              {user.role === "ADMIN" && (
+                <Link
+                  href="/admin"
+                  className="font-medium text-slate-600 hover:text-teal-700"
+                >
+                  Admin
+                </Link>
+              )}
                 <span
                   title={user.email}
                   className="max-w-48 truncate text-slate-500"
