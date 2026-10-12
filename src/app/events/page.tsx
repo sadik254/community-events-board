@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { ReminderButton } from "@/components/reminder-button";
 
 type EventItem = {
   id: string;
@@ -305,6 +306,7 @@ export default function EventsPage() {
                           ? "Free"
                           : priceFormatter.format(event.pricePaise / 100)}
                       </p>
+                      <ReminderButton eventId={event.id} />
                     </div>
                   </article>
                 ))}
