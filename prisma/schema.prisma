@@ -1,0 +1,92 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum Category {
+  MUSIC
+  WORKSHOP
+  FOOD
+  SPORTS
+  KIDS
+}
+
+enum CardTheme {
+  SUNSET
+  OCEAN
+  FOREST
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  role         Role     @default(USER)
+  createdAt    DateTime @default(now())
+
+  favourites FavouriteCategory[]
+  reminders  Reminder[]
+  designs    CardDesign[]
+}
+
+model Event {
+  id          String   @id @default(cuid())
+  title       String
+  category    Category
+  city        String
+  startsAt    DateTime
+  pricePaise  Int
+  description String
+  imageUrl    String
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  reminders Reminder[]
+  designs   CardDesign[]
+
+  @@index([isActive, startsAt])
+  @@index([category, city, isActive, startsAt])
+}
+
+model FavouriteCategory {
+  userId   String
+  category Category
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@id([userId, category])
+}
+
+model Reminder {
+  userId    String
+  eventId   String
+  createdAt DateTime @default(now())
+
+  user  User  @relation(fields: [userId], references: [id])
+  event Event @relation(fields: [eventId], references: [id])
+
+  @@id([userId, eventId])
+}
+
+model CardDesign {
+  userId    String
+  eventId   String
+  theme     CardTheme @default(SUNSET)
+  stickers  Json
+  updatedAt DateTime  @updatedAt
+
+  user  User  @relation(fields: [userId], references: [id])
+  event Event @relation(fields: [eventId], references: [id])
+
+  @@id([userId, eventId])
+}
