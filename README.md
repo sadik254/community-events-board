@@ -17,7 +17,7 @@ Requirements: Node.js 20+ and npm.
 Sample admin login (from the checked-in example values):
 
 - Email: `admin@example.com`
-- Password: `admin123!`
+- Password: `admin123`
 
 Change both values in `.env` before running `seed-admin.ts` if you want different credentials. The seed command creates or updates that account and stores a bcrypt hash.
 
